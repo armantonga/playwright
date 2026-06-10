@@ -4,7 +4,7 @@ export class ProductsPage {
   constructor(private page: Page) {}
 
   async navigateProducts() {
-    await this.page.goto('/products');
+    await this.page.goto('/products', { waitUntil: 'domcontentloaded' });
   }
 
   async assertOnProductsPage() {

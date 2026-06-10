@@ -7,7 +7,7 @@ test('sign up new account', async ({ page }) => {
     await expect(page).toHaveTitle(/Automation Exercise/);
     await page.getByRole('link', { name: 'Signup / Login'}).click();
     await page.getByPlaceholder('Name').fill('Test123');
-    await page.getByPlaceholder('Email Address').nth(1).fill('jeyobed445@fanchatu.com');
+    await page.getByPlaceholder('Email Address').nth(1).fill('jeyo45@fanchatu.com');
     await page.getByRole('button', { name: 'Signup'}).click();
 
     //checking title after clicking the signup
