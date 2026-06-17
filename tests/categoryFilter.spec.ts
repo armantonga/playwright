@@ -5,6 +5,7 @@ import { CategoryPage } from '../pages/CategoryPage';
 
 const EMAIL = 'armantesting0@gmail.com';
 const PASSWORD = '!Acorn321';
+
 let productsPage!: ProductsPage;
 let categoryPage!: CategoryPage;
 
@@ -18,7 +19,7 @@ test.beforeEach(async ({ page }) => {
   await loginPage.login(EMAIL, PASSWORD);
 });
 
-test ('Verify women category', async ({ page }) => {
+test ('Verify women category @regression', async ({ page }) => {
    
     await productsPage.navigateProducts();
     await categoryPage.assertCategories();
@@ -31,7 +32,7 @@ test ('Verify women category', async ({ page }) => {
     await categoryPage.assertDressProduct();
 });
 
-test ('Verify brands qty ', async ({page}) => {
+test ('Verify brands qty @regression', async ({page}) => {
   
   //Polo
   await productsPage.navigateProducts();
