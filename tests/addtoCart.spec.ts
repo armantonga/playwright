@@ -1,36 +1,18 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
 import { ProductsPage } from '../pages/ProductsPage';
 import { CartPage } from '../pages/CartPage';
 
-const EMAIL = 'armantesting0@gmail.com';
-const PASSWORD = '!Acorn321';
+let productsPage!: ProductsPage;
+let cartPage!: CartPage;
 
 test.beforeEach(async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  await loginPage.goto();
-  await loginPage.login(EMAIL, PASSWORD);
-});
-
-test('add item to cart', async ({ page }) => {
-    const productsPage = new ProductsPage(page);
-    const cartPage = new CartPage(page);
-
-    await productsPage.navigateProducts();
-    await productsPage.assertOnProductsPage();
-    await productsPage.searchProduct('Blue Top');
-    await productsPage.addToCart('1');
-    await productsPage.assertAddedItemtoCart();
-    await productsPage.continueShopping();
-    await cartPage.navigateCart();
-    await cartPage.removeItemFromCart('1');        
-    await cartPage.assertCartEmpty(); 
+  
+  productsPage = new ProductsPage(page);
+  cartPage = new CartPage(page);
 
 });
 
-test('check item in cart', async ({ page }) => {
-    const cartPage = new CartPage(page);
-    const productsPage = new ProductsPage(page);
+test('Verify item added to the cart @regression', async ({ page }) => {
 
     await productsPage.navigateProducts();
     await productsPage.assertOnProductsPage();
@@ -40,8 +22,9 @@ test('check item in cart', async ({ page }) => {
     await productsPage.continueShopping();
     await cartPage.navigateCart();
     await cartPage.assertOnCartPage();
-    await cartPage.assertCartItem('Blue Top', '1');
-    await cartPage.removeItemFromCart('1');        
+    await cartPage.assertCartItem('Blue Top', '1');     
+    await cartPage.removeItemFromCart('1'); 
     await cartPage.assertCartEmpty(); 
 
 });
+

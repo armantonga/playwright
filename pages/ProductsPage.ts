@@ -28,11 +28,27 @@ export class ProductsPage {
   async assertAddedItemtoCart(){
     const cartModal = this.page.locator('#cartModal');
     await expect(cartModal).toBeVisible();
-    await expect(cartModal).toContainText('Your product has been added to cart.')
+    await expect(cartModal).toContainText('Your product has been added to cart.');
 
   }
   async continueShopping() {
         await this.page.locator('#cartModal .btn').filter({ hasText: 'Continue Shopping' }).click();
     }
+
+async clickViewProduct(productName: string) {
+    const productCard = this.page
+      .locator('.col-sm-4')
+      .filter({ has: this.page.locator('p', { hasText: productName }) });
+
+    await productCard
+      .getByRole('link', { name: 'View Product' })
+      .click();
+  }
+
+async assertProduct(){
+  const productInfo = this.page.locator('.product-details');
+  await expect(productInfo).toContainText('Men Tshirt');
+
+}
 
 }
