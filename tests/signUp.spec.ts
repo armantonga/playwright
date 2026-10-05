@@ -7,7 +7,8 @@ test('sign up new account', async ({ page }) => {
     await expect(page).toHaveTitle(/Automation Exercise/);
     await page.getByRole('link', { name: 'Signup / Login'}).click();
     await page.getByPlaceholder('Name').fill('Test123');
-    await page.getByPlaceholder('Email Address').nth(1).fill('jeyo45@fanchatu.com');
+    const uniqueEmail = `testuser${Date.now()}@example.com`;
+    await page.getByPlaceholder('Email Address').nth(1).fill(uniqueEmail);
     await page.getByRole('button', { name: 'Signup'}).click();
 
     //checking title after clicking the signup
@@ -28,7 +29,7 @@ test('sign up new account', async ({ page }) => {
     await page.locator('#mobile_number').fill('09657483946');
     await page.getByRole('button', { name: 'Create Account' }).click();
 
-    await expect(page).toHaveURL('/account_created')
+    await expect(page).toHaveURL(/.*account_created/);
 
 
 });
