@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { CustomersPage } from '../../pages/CustomersPage';
+import { CustomersPage } from '../../../pages/CustomersPage';
 
 let customersPage!: CustomersPage;
 
